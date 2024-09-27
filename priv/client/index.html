@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Xabber Web</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>
+    <link rel="manifest" href="manifest.json">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let js = document.createElement('script'),
+                js_vendors = document.createElement('script'),
+                css = document.createElement('link');
+            js.src='./dist/xabber.main.js';
+            js.onload = () => {
+                xabber.configure({
+                    // Please specify location of xabber-websocket service,
+                    // e.g. 'wss://web.xabber.com/websocket
+                    // To run your own server visit https://github.com/redsolution/xabber-websocket
+                    CONNECTION_URL: (location.protocol == 'https:' ? 'wss:' : 'ws:')+'//'+location.host+'/websocket',
+                    LOG_LEVEL: 'WARN'
+                });
+                xabber.start();
+            };
+            js_vendors.src='./dist/xabber.vendors.js';
+            document.head.appendChild(js_vendors);
+            css.href='./dist/main.css';
+            css.rel='stylesheet';
+            document.head.appendChild(css);
+            js_vendors.onload = () => {
+                document.head.appendChild(js);
+            };
+        });
+    </script>
+</head>
+<body style="height: 100%; width: 100%;">
+    <div id="xabber-container" style="height: 100%; width: 100%;">
+        <div class="login-container"></div>
+    </div>
+</body>
+
+</html>

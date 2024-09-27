@@ -1,0 +1,11 @@
+{application,xabber_ws,
+             [{description,"Xabber WebSocket Server"},
+              {vsn,"1.0.0"},
+              {registered,[]},
+              {mod,{xabber_ws_app,[]}},
+              {applications,[kernel,stdlib,cowboy]},
+              {env,[]},
+              {modules,[client_handler,redirect_handler,ws_handler,
+                        xabber_ws_app,xabber_ws_sup]},
+              {licenses,["Apache 2.0"]},
+              {links,[]}]}.
